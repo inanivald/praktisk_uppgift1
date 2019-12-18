@@ -1,7 +1,26 @@
-const searchInput = document.querySelector("#searchInput");
+
 const resultBox = document.querySelector("#result-box");
+const searchfieldEl = document.querySelector('#searchfield');
+const searchTextEl = document.querySelector('#textInputSearch'); 
+ 
+// Catch value from input-field and save it
+ // Use eventlistener when user clicks on search-button
+searchfieldEl.addEventListener('submit', function(e) {
+ e.preventDefault();
+ 
+ let search = searchTextEl.value;
+ 
+ console.log(search);
+ 
+ searchTextEl.value = '';
+
+});
+
+
 const getSearch = async () => {
-    const response = await fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+    let newUrl = "https://deezerdevs-deezer.p.rapidapi.com/search?q="
+
+    const response = await fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=sia", {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
@@ -34,3 +53,4 @@ const renderSearchResult = () => {
 getSearch().then(renderSearchResult).catch(err => {
     console.log("Error getting search result!");
 });
+
